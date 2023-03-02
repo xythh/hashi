@@ -1,0 +1,25 @@
+[TODO] Convert kez notes 
+[TODO] Add anchor to every heading automatically.
+
+AFTER RELEASE
+[TODO] Change internal variables like context to .Context to avoid collision with commands
+[TODO] Replace braile space with {-1}
+[TODO] better command feedback
+[TODO] currently pitch doesnt work in the search table if its in the Concept column
+[TODO] implement modal search popup, Shift + F
+[TODO] improve  cmd args
+[TODO] Better error handling, explicitily mention what hapended
+[TODO] make title tag first the tag set in the program, than the first h1
+element and finally the name of the file with file extension removed
+[TODO] see if interest in HHLL format and see if interest in format for devoicing
+[TODO] PORT TO gomarkdown/markdown
+
+
+
+
+
+
+
+
+
+
