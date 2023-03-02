@@ -1,0 +1,67 @@
+html{
+    font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+    -ms-text-size-adjust:100%;
+    -webkit-text-size-adjust:100%
+}
+body{
+    margin:2% 5%;
+    line-height:140%;
+    font-size:18px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    color: #eee;
+    background: #212121;
+}
+a {
+	color:#4f4f4f;
+}
+.pitch-accent {
+    display:inline;
+}
+span.marking,marking{
+    border-top:solid transparent 1px;
+    display:inline-block;
+    padding-top:0;
+    text-indent:0;
+    vertical-align:bottom
+}
+span.drop,span.overline,span.drop,span.overline{
+    border-top:solid #dc3545 1px;
+    position:relative;
+    padding-right: 0.1em;
+    padding-top: 0.05em;
+}
+span.drop::after,span.drop::after{
+    background:#dc3545;
+    content:"";
+    height:6px;
+    left:100%;
+    position:absolute;
+    top:-1px;
+    width:1px
+}
+code {
+	font-family: monospace;
+	padding:2px;
+	background-color:#dee4f1;
+}
+h1{
+    text-align:center;
+    font-size:1.95em;
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+p{
+    margin: 0.67em 0 1em;
+}
+
+
+
