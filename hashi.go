@@ -189,7 +189,7 @@ func buildMarkdown(path string, w io.Writer, vars Vars) error {
 	if err != nil {
 		return err
 	}
-	fridayString := string(blackfriday.Run([]byte(content)))
+	fridayString := string(blackfriday.Run([]byte(content),blackfriday.WithExtensions(blackfriday.CommonExtensions|blackfriday.AutoHeadingIDs)))
 	pitchWriter(&fridayString)
 	//this is done right after converting to HTML
 	v["content"] = fridayString
