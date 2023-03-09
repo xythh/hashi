@@ -1,11 +1,13 @@
+[TODO] Add ID tag to all members of the table so they can be linked.
+[TODO] make new table
 [TODO] Convert kez notes 
-[TODO] Add anchor to every heading automatically.
+[TODO] change links from google docs
+[TODO] use > block quote formatting instead
 
 AFTER RELEASE
 [TODO] Change internal variables like context to .Context to avoid collision with commands
 [TODO] Replace braile space with {-1}
 [TODO] better command feedback
-[TODO] currently pitch doesnt work in the search table if its in the Concept column
 [TODO] implement modal search popup, Shift + F
 [TODO] improve  cmd args
 [TODO] Better error handling, explicitily mention what hapended
