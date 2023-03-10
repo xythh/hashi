@@ -16,8 +16,8 @@ import (
 )
 
 const (
-	HASHIDIR  = ".hashi"
-	PUBDIR = ".pub"
+	HASHIDIR = ".hashi"
+	PUBDIR   = ".pub"
 )
 
 type Vars map[string]string
@@ -188,7 +188,7 @@ func buildMarkdown(path string, w io.Writer, vars Vars) error {
 	if err != nil {
 		return err
 	}
-//	fridayString := string(blackfriday.Run([]byte(content),blackfriday.WithExtensions(blackfriday.CommonExtensions|blackfriday.AutoHeadingIDs)))
+	//	fridayString := string(blackfriday.Run([]byte(content),blackfriday.WithExtensions(blackfriday.CommonExtensions|blackfriday.AutoHeadingIDs)))
 	made := Markdown([]byte(content))
 	fridayString := string(made[:])
 	pitchWriter(&fridayString)

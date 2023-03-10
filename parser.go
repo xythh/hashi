@@ -1,24 +1,24 @@
 /*
 add clickable anchors to headings and
 add anchors to tablerows with a {#id}
-MAKE headings unique use map to store current headings and then check if existsand if it does add -1 then check if that exists and if it does add -2 
-respect custom anchor with {#id} 
+MAKE headings unique use map to store current headings and then check if existsand if it does add -1 then check if that exists and if it does add -2
+respect custom anchor with {#id}
 */
 package main
 
 import (
 	"bytes"
-	"strconv"
 	"fmt"
-	"strings"
-	"github.com/shurcooL/octicon"
 	"github.com/russross/blackfriday"
+	"github.com/shurcooL/octicon"
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"
+	"strconv"
+	"strings"
 )
 
-	//a map containing all current anchors for the given file, to ensure unique IDs.
-	var anchors = make(map[string]bool)
+//a map containing all current anchors for the given file, to ensure unique IDs.
+var anchors = make(map[string]bool)
 
 // renders markdown
 func Markdown(text []byte) []byte {
@@ -29,7 +29,7 @@ func Markdown(text []byte) []byte {
 	// NASTY SOLUTION need better
 	for k, _ := range anchors {
 		delete(anchors, k)
-    }
+	}
 	return unsanitized
 }
 
@@ -54,7 +54,7 @@ func Heading(heading atom.Atom, title string) *html.Node {
 	span := &html.Node{
 		// check what this does and get rid of it since it seems useless considering i got rid of span
 		Type: html.ElementNode, Data: atom.Span.String(),
-		Attr:       []html.Attribute{{Key: atom.Class.String(), Val: "#"}}, 
+		Attr: []html.Attribute{{Key: atom.Class.String(), Val: "#"}},
 		//remove this useless
 		FirstChild: octicon.Link(),
 	}
@@ -74,11 +74,43 @@ const extensions = blackfriday.EXTENSION_NO_INTRA_EMPHASIS |
 	blackfriday.EXTENSION_SPACE_HEADERS |
 	blackfriday.EXTENSION_NO_EMPTY_LINE_BEFORE_BLOCK
 
-
 type renderer struct {
 	*blackfriday.Html
 }
 
+//Table row anchors not checked for uniqueness or correctness
+func (*renderer) TableRow(out *bytes.Buffer, text []byte) {
+	doubleSpace(out)
+	// nasty conversion, probably cleaner way of doing this
+	
+	contents, start,end := findId(string(text))
+	
+	inside := []rune(contents)
+	//	fmt.Println("found possible tag")
+	if len(inside)-1 > 0 && inside[0] == '#' {
+		id := string(inside[1:])
+		out.WriteString("<tr id=" + `"` + id + `"` + ">\n")
+		newText := string(text[:start]) + string(text[end+1:])
+		out.Write([]byte(newText))
+	} else {
+		out.WriteString("<tr>\n")
+		out.Write(text)
+	}
+	out.WriteString("\n</tr>\n")
+}
+
+// finds {#id} and returns index for the brackets and the inside text
+func findId(s string) (string,int,int) {
+	i := strings.Index(s, "{")
+	var j int
+	if i >= 0 {
+		j := strings.Index(s, "}")
+		if j >= 0 {
+			return s[i+1 : j],i,j
+		}
+	}
+	return "",i,j
+}
 
 // Headings with clickable anchors.
 func (*renderer) Header(out *bytes.Buffer, text func() bool, level int, _ string) {
@@ -102,14 +134,14 @@ func (*renderer) Header(out *bytes.Buffer, text func() bool, level int, _ string
 		textContent = html.UnescapeString(textHTML)
 	}
 	anchorName := blackfriday.SanitizedAnchorName(textContent)
-	original := anchorName+"-"
+	original := anchorName + "-"
 	var found int
 	// this will loop until a unique anchor is found
 	for anchors[anchorName] == true {
 		found++
 		anchorName = original + strconv.Itoa(found)
 	}
-	anchors[anchorName]= true
+	anchors[anchorName] = true
 
 	out.WriteString(fmt.Sprintf(`<h%d>%s<a name="%s" class="anchor" href="#%s" rel="nofollow" aria-hidden="true">#</a>`, level, textHTML, anchorName, anchorName))
 	out.WriteString(fmt.Sprintf("</h%d>\n", level))

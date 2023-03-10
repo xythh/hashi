@@ -3,8 +3,6 @@ package main
 import "strings"
 import "strconv"
 
-
-
 // REFACTOR toPitch disgusting unreadable code.
 
 func pitchWriter(s *string) error {
@@ -160,30 +158,28 @@ func toPitch(s string, pitchNum uint8, moraLength uint8) ([]string, []uint8) {
 		end1++
 	}
 	build = append(build, string(runes[0:end1]))
-	realnum := getPitchNum(s,pitchNum)
-	build = append(build,string(runes[end1:realnum]))
-	build = append(build,string(runes[realnum]))
-	build = append(build,string(runes[realnum+1:]))
+	realnum := getPitchNum(s, pitchNum)
+	build = append(build, string(runes[end1:realnum]))
+	build = append(build, string(runes[realnum]))
+	build = append(build, string(runes[realnum+1:]))
 
 	return build, pattern
 }
 
-
 func getPitchNum(s string, pitchNum uint8) uint8 {
 	runes := []rune(s)
-	num := pitchNum  - 1
- 
+	num := pitchNum - 1
+
 	for i := uint8(0); i < num; i++ {
-		if (isYoon(runes[i])) {
+		if isYoon(runes[i]) {
 			num++
 		}
 	}
-	if (isYoon(runes[num+1])) {
+	if isYoon(runes[num+1]) {
 		num++
 	}
 	return num
 }
-
 
 func getMoraLength(s string) uint8 {
 	runes := []rune(s)
@@ -202,7 +198,7 @@ func isDelimeter(r rune) bool {
 	//	return true
 	//	}
 	switch r {
-	case '<', '>', ',', '\t', '\v', '\f', ' ', 0x85, 0xA0, '・', '　','、','(','（':
+	case '<', '>', ',', '\t', '\v', '\f', ' ', 0x85, 0xA0, '・', '　', '、', '(', '（':
 		return true
 	}
 
