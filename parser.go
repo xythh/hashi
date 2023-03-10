@@ -8,6 +8,7 @@ package main
 
 import (
 	"bytes"
+	"strconv"
 	"fmt"
 	"strings"
 	"github.com/shurcooL/octicon"
@@ -21,6 +22,7 @@ func Markdown(text []byte) []byte {
 	const htmlFlags = 0
 	renderer := &renderer{Html: blackfriday.HtmlRenderer(htmlFlags, "", "").(*blackfriday.Html)}
 	unsanitized := blackfriday.Markdown(text, renderer, extensions)
+//	fmt.Println(anchors)
 	return unsanitized
 }
 
@@ -70,6 +72,9 @@ type renderer struct {
 	*blackfriday.Html
 }
 
+	//a map of all the current header anchors
+	var anchors = make(map[string]bool)
+
 // Headings with clickable anchors.
 func (*renderer) Header(out *bytes.Buffer, text func() bool, level int, _ string) {
 	marker := out.Len()
@@ -92,6 +97,15 @@ func (*renderer) Header(out *bytes.Buffer, text func() bool, level int, _ string
 		textContent = html.UnescapeString(textHTML)
 	}
 	anchorName := blackfriday.SanitizedAnchorName(textContent)
+	original := anchorName+"-"
+	var found int
+	// this will loop until a unique anchor is found
+	for anchors[anchorName] == true {
+		found++
+		anchorName = original + strconv.Itoa(found)
+	}
+	anchors[anchorName]= true
+
 	out.WriteString(fmt.Sprintf(`<h%d>%s<a name="%s" class="anchor" href="#%s" rel="nofollow" aria-hidden="true">#</a>`, level, textHTML, anchorName, anchorName))
 	out.WriteString(fmt.Sprintf("</h%d>\n", level))
 }
