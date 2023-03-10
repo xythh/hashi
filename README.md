@@ -13,5 +13,9 @@ To
 
 
 
+# Commands
 
+`hashi build` If ran with no arguments builds all the files in the directory except for files or directories that start with a dot. If ran with an argument it builds only that file.
+
+'hashi watch' bulds files as they are modified.
 
