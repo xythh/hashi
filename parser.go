@@ -17,12 +17,19 @@ import (
 	"golang.org/x/net/html/atom"
 )
 
+	//a map containing all current anchors for the given file, to ensure unique IDs.
+	var anchors = make(map[string]bool)
+
 // renders markdown
 func Markdown(text []byte) []byte {
 	const htmlFlags = 0
 	renderer := &renderer{Html: blackfriday.HtmlRenderer(htmlFlags, "", "").(*blackfriday.Html)}
 	unsanitized := blackfriday.Markdown(text, renderer, extensions)
-//	fmt.Println(anchors)
+	//THIS resets the anchors after each file gets processed
+	// NASTY SOLUTION need better
+	for k, _ := range anchors {
+		delete(anchors, k)
+    }
 	return unsanitized
 }
 
@@ -72,8 +79,6 @@ type renderer struct {
 	*blackfriday.Html
 }
 
-	//a map of all the current header anchors
-	var anchors = make(map[string]bool)
 
 // Headings with clickable anchors.
 func (*renderer) Header(out *bytes.Buffer, text func() bool, level int, _ string) {
