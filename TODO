@@ -1,5 +1,6 @@
-[TODO] Add ID tag to all members of the table so they can be linked.
-[TODO] make new table
+[TODO] make sure header anchors are unique
+[TODO] Add ID tag to all tablerows that have a {#id}
+[TODO] Change parser to blackfriday/v2  if needed to support {#id}
 [TODO] Convert kez notes 
 [TODO] change links from google docs
 [TODO] use > block quote formatting instead

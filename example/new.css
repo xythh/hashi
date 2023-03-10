@@ -12,6 +12,26 @@ body{
     color: #eee;
     background: #212121;
 }
+h1 a.anchor,
+h2 a.anchor,
+h3 a.anchor,
+h4 a.anchor,
+h5 a.anchor,
+h6 a.anchor{
+margin-left: 0.5rem;
+opacity:0;
+position: absolute;
+transition: opacity 0.2s linear;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor{
+opacity:1;
+}
+
 a {
 	color:#4f4f4f;
 }

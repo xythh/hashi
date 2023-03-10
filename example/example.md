@@ -23,7 +23,7 @@ pitch works as you would expect for all the different markdown elements.
 
 ## Masu{2}
 
-##  ます{1} {#ます}
+##  ます{1} 
 
 ナッツ{1}
 

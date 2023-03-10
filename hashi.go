@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/russross/blackfriday/v2"
 	"gopkg.in/yaml.v2"
 	"io"
 	"io/ioutil"
@@ -189,7 +188,9 @@ func buildMarkdown(path string, w io.Writer, vars Vars) error {
 	if err != nil {
 		return err
 	}
-	fridayString := string(blackfriday.Run([]byte(content),blackfriday.WithExtensions(blackfriday.CommonExtensions|blackfriday.AutoHeadingIDs)))
+//	fridayString := string(blackfriday.Run([]byte(content),blackfriday.WithExtensions(blackfriday.CommonExtensions|blackfriday.AutoHeadingIDs)))
+	made := Markdown([]byte(content))
+	fridayString := string(made[:])
 	pitchWriter(&fridayString)
 	//this is done right after converting to HTML
 	v["content"] = fridayString
