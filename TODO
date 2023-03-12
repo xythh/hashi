@@ -1,9 +1,10 @@
 [TODO] documentation
+[TODO] fix css for mobile
 [TODO] Replace braile space with {-1}
 [TODO] better command feedback
 [TODO] Better error handling, explicitily mention what hapended
 [TODO] PORT TO gomarkdown/markdown
-[TODO] Convert kez notes, waiting for his response
+[TODO] Convert kez notes, waiting for his response, fix hrefs お＊ご doesnt work properly
 [TODO] implement modal search popup, Shift + F
 [TODO] see if interest in HHLL format and see if interest in format for devoicing
 
