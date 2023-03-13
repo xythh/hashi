@@ -143,7 +143,7 @@ func (*renderer) Header(out *bytes.Buffer, text func() bool, level int, _ string
 	}
 	anchors[anchorName] = true
 
-	out.WriteString(fmt.Sprintf(`<h%d>%s<a name="%s" class="anchor" href="#%s" rel="nofollow" aria-hidden="true">#</a>`, level, textHTML, anchorName, anchorName))
+	out.WriteString(fmt.Sprintf(`<h%d>%s<a id="%s" class="anchor" href="#%s" rel="nofollow" aria-hidden="true">#</a>`, level, textHTML, anchorName, anchorName))
 	out.WriteString(fmt.Sprintf("</h%d>\n", level))
 }
 
