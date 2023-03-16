@@ -243,8 +243,7 @@ func buildPitch(s []string, p []uint8) string {
 		case 1:
 			builder.WriteString(`<span class="overline">` + s[i] + `</span>`)
 		case 2:
-//			builder.WriteString(`<span class="drop">` + s[i] + `</span>`)
-			builder.WriteString(`<span class="drop">` + s[i] + `</span><span class="drop-line"></span>`)
+			builder.WriteString(`<span class="drop">` + s[i] + `</span>`)
 		}
 	}
 	builder.WriteString(`</span>`)
