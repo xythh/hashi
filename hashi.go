@@ -144,10 +144,10 @@ func render(s string, vars Vars) (string, error) {
 
 	//do anchor code here
 	//err := pitchTable(&s)
-//	//THIS is added before conversition to HTML
-//	if err != nil {
-//		fmt.Println(err)
-//	}
+	//	//THIS is added before conversition to HTML
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	}
 	for {
 		if from := strings.Index(s, delim_open); from == -1 {
 			out.WriteString(s)

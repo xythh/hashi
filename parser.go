@@ -17,7 +17,7 @@ import (
 	"strings"
 )
 
-//a map containing all current anchors for the given file, to ensure unique IDs.
+// a map containing all current anchors for the given file, to ensure unique IDs.
 var anchors = make(map[string]bool)
 
 // renders markdown
@@ -78,13 +78,13 @@ type renderer struct {
 	*blackfriday.Html
 }
 
-//Table row anchors not checked for uniqueness or correctness
+// Table row anchors not checked for uniqueness or correctness
 func (*renderer) TableRow(out *bytes.Buffer, text []byte) {
 	doubleSpace(out)
 	// nasty conversion, probably cleaner way of doing this
-	
-	contents, start,end := findId(string(text))
-	
+
+	contents, start, end := findId(string(text))
+
 	inside := []rune(contents)
 	//	fmt.Println("found possible tag")
 	if len(inside)-1 > 0 && inside[0] == '#' {
@@ -100,16 +100,16 @@ func (*renderer) TableRow(out *bytes.Buffer, text []byte) {
 }
 
 // finds {#id} and returns index for the brackets and the inside text
-func findId(s string) (string,int,int) {
+func findId(s string) (string, int, int) {
 	i := strings.Index(s, "{")
 	var j int
 	if i >= 0 {
 		j := strings.Index(s, "}")
 		if j >= 0 {
-			return s[i+1 : j],i,j
+			return s[i+1 : j], i, j
 		}
 	}
-	return "",i,j
+	return "", i, j
 }
 
 // Headings with clickable anchors.
@@ -143,7 +143,8 @@ func (*renderer) Header(out *bytes.Buffer, text func() bool, level int, _ string
 	}
 	anchors[anchorName] = true
 
-	out.WriteString(fmt.Sprintf(`<h%d>%s<a id="%s" class="anchor" href="#%s" rel="nofollow" aria-hidden="true">#</a>`, level, textHTML, anchorName, anchorName))
+//	out.WriteString(fmt.Sprintf(`<h%d>%s<a id="%s" class="anchor" href="#%s" rel="nofollow" aria-hidden="true">#</a>`, level, textHTML, anchorName, anchorName))
+		out.WriteString(fmt.Sprintf(`<h%d>%s<a id="%s" class="anchor" href="#%s" rel="nofollow" >#</a>`, level, textHTML, anchorName, anchorName))
 	out.WriteString(fmt.Sprintf("</h%d>\n", level))
 }
 
