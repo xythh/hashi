@@ -19,6 +19,8 @@ pitch works as you would expect for all the different markdown elements.
 
 おまえ{0}
 
+==Hello==
+
 
 
 ## Masu{2}
@@ -74,3 +76,4 @@ The parser respects common punctuation and spaces between words かんじ{0},,�
 ⠀な{1}
 
 よろしく{0} and よろしく{2}
+

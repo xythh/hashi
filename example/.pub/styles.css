@@ -4,26 +4,25 @@
      -webkit-text-size-adjust:100% 
 }
  body{
-     margin:2% 5%;
-     text-align:center;
-     line-height:140%;
+     max-width: 85%;
+     margin: auto;
      font-size:18px;
-     line-height:1.5;
-     -webkit-font-smoothing:antialiased;
+     line-height: 1.5;
      color:#eee;
      background:#212121 
 }
  h1 a.anchor,h2 a.anchor,h3 a.anchor,h4 a.anchor,h5 a.anchor,h6 a.anchor{
      margin-left: 0.5rem;
      opacity:0;
-     position: absolute;
-     transition: opacity 0.2s linear;
+     text-decoration: none;
+     color: #eee;
 }
  h1:hover a.anchor,h2:hover a.anchor,h3:hover a.anchor,h4:hover a.anchor,h5:hover a.anchor,h6:hover a.anchor{
      opacity:1;
 }
  a{
      color:#40B0FF;
+     word-wrap:break-word;
 }
  span.drop,span.overline{
      padding-top: 0.1em;
@@ -37,40 +36,9 @@
      background-repeat:no-repeat;
      padding-right: 0.2em;
 }
- h1{
-     text-align:center;
-     font-size:1.95em 
-}
- h2,h3,h4,h5{
-     display:block;
-     margin-block-start:.83em;
-     margin-block-end:.83em;
-     margin-inline-start:0;
-     margin-inline-end:0;
-     font-weight:700 
-}
- h2{
-     font-size:1.5em;
-}
- h3{
-     font-size:1.5em;
-}
- h4{
-     font-size:2.0em;
-}
- h5{
-     font-size:1.5em;
-}
- p{
-     margin:.67em 0 1em 
-}
  table{
      border-collapse:collapse;
-     table-layout:auto;
-     text-align:left;
-     margin-bottom:1em;
      border:1px solid #4f4f4f;
-     margin-top:.5em;
      width: 100%;
 }
  td{
@@ -80,13 +48,29 @@
      width: 10%;
 }
  th{
-     text-align: center;
      border:1px solid #4f4f4f;
 }
  td:last-child {
+     word-break: break-word;
      padding: 10px;
      text-align: left;
      width: 100%;
+}
+ code {
+     font-family: inherit;
+     background-color: #ff0064;
+     background: rgba(255,0,0,.1);
+}
+ pre {
+     padding: 16px;
+     overflow: auto;
+     font-size: 85%;
+     background-color: #211c16;
+     border-radius: 6px;
+}
+ pre code {
+     font-family: inherit;
+     background-color: #211c16 
 }
  code {
      font-family: inherit;
