@@ -1,0 +1,78 @@
+ html{
+     font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+     -ms-text-size-adjust:100%;
+     -webkit-text-size-adjust:100% 
+}
+ body{
+     max-width: 85%;
+     margin: auto;
+     font-size:18px;
+     line-height: 1.5;
+     color:#eee;
+     background:#212121 
+}
+ h1 a.anchor,h2 a.anchor,h3 a.anchor,h4 a.anchor,h5 a.anchor,h6 a.anchor{
+     margin-left: 0.5rem;
+     opacity:0;
+     text-decoration: none;
+     color: #eee;
+}
+ h1:hover a.anchor,h2:hover a.anchor,h3:hover a.anchor,h4:hover a.anchor,h5:hover a.anchor,h6:hover a.anchor{
+     opacity:1;
+}
+ a{
+     color:#40B0FF;
+     word-wrap:break-word;
+}
+ span.drop,span.overline{
+     padding-top: 0.1em;
+}
+ span.overline{
+     background: linear-gradient(#dc3545 0 0) top /100% 1px;
+     background-repeat:no-repeat;
+}
+ span.drop{
+     background: linear-gradient(#dc3545 0 0) top /100% 1px, linear-gradient(#dc3545 0 0) 100% 0% / 1px 40%;
+     background-repeat:no-repeat;
+     padding-right: 0.2em;
+}
+ table{
+     border-collapse:collapse;
+     border:1px solid #4f4f4f;
+     width: 100%;
+}
+ td{
+     word-break: break-word;
+     table-layout: fixed;
+     border: 1px solid #4f4f4f;
+     text-align: center;
+     width: 10%;
+     padding: 10px;
+
+}
+ th{
+     border:1px solid #4f4f4f;
+}
+ code {
+     font-family: inherit;
+     background-color: #ff0064;
+     background: rgba(255,0,0,.1);
+}
+ pre {
+     padding: 16px;
+     overflow: auto;
+     font-size: 85%;
+     background-color: #211c16;
+     border-radius: 6px;
+}
+ pre code {
+     font-family: inherit;
+     background-color: #211c16 
+}
+ code {
+     font-family: inherit;
+     background-color: #ff0064;
+     background: rgba(255,0,0,.1);
+}
+ 
+
