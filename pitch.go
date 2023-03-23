@@ -1,11 +1,13 @@
 package main
 
-import "strings"
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 // REFACTOR toPitch disgusting unreadable code.
 
-func pitchWriter(s *string) error {
+func pitchWriter(s *string) {
 
 	var body string = ""
 	if s != nil {
@@ -21,12 +23,8 @@ func pitchWriter(s *string) error {
 				cutUp[i] = setPitchNum(cutUp[i])
 			}
 		}
-	} else {
-		return nil
-
+		*s = strings.Join(cutUp, "\n")
 	}
-	*s = strings.Join(cutUp, "\n")
-	return nil
 }
 func setPitchNum(s string) string {
 	parsed := findAllMatch(s)
@@ -175,6 +173,9 @@ func getPitchNum(s string, pitchNum uint8) uint8 {
 			num++
 		}
 	}
+	if isYoon(runes[num]) {
+		num++
+	}
 	if isYoon(runes[num+1]) {
 		num++
 	}
@@ -198,7 +199,7 @@ func isDelimeter(r rune) bool {
 	//	return true
 	//	}
 	switch r {
-	case '<', '>', ',', '\t', '\v', '\f', ' ', 0x85, 0xA0, '・', '　', '、', '(', '（':
+	case '<', '>', ',', '\t', '\v', '\f', ' ', 0x85, 0xA0, '・', '　', '、', '(', ')', '（', '[', ']', '［', '］':
 		return true
 	}
 
