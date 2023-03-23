@@ -1,5 +1,3 @@
-おいしゃさん{4} bugged drop should be on さ but instead on しゃ manually update these until bug fix
-
 たべないで{{2} stops the file from building, should just output it as that.
 
 [TODO] documentation
@@ -9,8 +7,6 @@
 [TODO] Replace braile space with {-} and {+} and use figure space instead of braile.
 
 [TODO] Set default css to default css and inline changes for NotOrange.
-
-[TODO] remove aria-hidden on header links
 
 [TODO] add support for == == for highlighting 
 
