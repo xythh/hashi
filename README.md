@@ -14,7 +14,7 @@ A static site generator that has flexible yet simple file structure, is extensib
 
 Download the binaries provided on github or download it using go get.
 
-	# go get github.com/xythh/hashi 
+	# go install github.com/xythh/hashi@latest 
 
 
 ## Supported Markdown
