@@ -32,12 +32,6 @@ func setPitchNum(s string) string {
 	for i, e := range parsed {
 		if strings.ContainsAny(parsed[i], "{}") {
 			insideBracket := match(parsed[i])
-			if isNumber(insideBracket) != true {
-				combined = combined + parsed[i]
-				continue
-			}
-			takeNum, _ := strconv.Atoi(match(e))
-			num := uint8(takeNum)
 			startDel := strings.Index(e, "{")
 			endDel := strings.Index(e, "}")
 			after := e[endDel+1:]
@@ -45,8 +39,23 @@ func setPitchNum(s string) string {
 			if len(word) == 0 {
 				combined = combined + parsed[i]
 				continue
-
 			}
+			if insideBracket == "+" {
+				var build = []string{word, "⠀"}
+				var pattern = []uint8{0, 1}
+				parsed[i] = buildPitch(build, pattern) + after
+			}
+			if insideBracket == "-" {
+				var build = []string{"⠀", word}
+				var pattern = []uint8{2, 0}
+				parsed[i] = buildPitch(build, pattern) + after
+			}
+			if isNumber(insideBracket) != true {
+				combined = combined + parsed[i]
+				continue
+			}
+			takeNum, _ := strconv.Atoi(match(e))
+			num := uint8(takeNum)
 
 			moraLength := getMoraLength(word)
 			if moraLength >= num {
