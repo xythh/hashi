@@ -51,7 +51,7 @@ In this example we have a basic layout for our page. At build time, any file tha
 
 ## Frontmatter
 
-Markdown documents can optionally start with a section that defines certain variables that can be used within the Markdown document as well as within the layout that is used by that documnet. Your markdown's frontmatter is written at the start of the document up until  `---` with your content following it.
+Markdown documents can optionally start with a section that defines certain variables that can be used within that document as well as within the layout that is used by that documnet. Your markdown's frontmatter is written at the start of the document up until  `---` with your content following it.
 
 ``` yaml
 title: Example
