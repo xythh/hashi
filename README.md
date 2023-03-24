@@ -21,7 +21,8 @@ Download the binaries provided on github or download it using go get.
 
 * Basic markdown extended with tables,fenced code blocks,autolinking,strikethrough and a few custom extensions.
 
-* Pitch notation is supported with the syntax WORD{DROP_LOCATION}<br>example: べんきょう{0} will generate the html for べんきょう as a heiban word.
+* Pitch notation is supported with the syntax WORD{DROP_LOCATION}<br>example: べんきょう{0} will generate the html for べんきょう as a heiban word.<br>
+Special syntax {+} and {-} supports drops before and after a word, <br>example ねん{-} gets rendered as a drop before ＼ねん and か{+} gets rendered as  か￣.
 
 * Headers automatically have an anchor added to them.
 
