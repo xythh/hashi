@@ -2,8 +2,6 @@
 
 [TODO] documentation
 
-[TODO] Replace braile space with {-} and {+} and use figure space instead of braile.
-
 [TODO] Set default css to default css and inline changes for NotOrange.
 
 [TODO] polish up example
