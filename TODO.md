@@ -1,14 +1,10 @@
 たべないで{{2} stops the file from building, should just output it as that.
 
-[TODO] documentation
-
 [TODO] Set default css to default css and inline changes for NotOrange.
 
 [TODO] polish up example
 
 [TODO] add support for == == for highlighting 
-
-[TODO] Convert kez notes, waiting for his response, fix hrefs お＊ご doesnt work properly
 
 [TODO] implement modal search popup, Shift + F
 
