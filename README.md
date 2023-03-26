@@ -1,7 +1,7 @@
  hashi
  ==
 
-A static site generator that has flexible yet simple file structure, is extensibility and supports Japanese pitch notation.
+A static site generator that has flexible yet simple file structure, is extensible and supports Japanese pitch notation.
 
 ## Features
 
