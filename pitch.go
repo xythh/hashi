@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// REFACTOR toPitch disgusting unreadable code.
+const EMPTY_SPACE = "⠀"
 
 func pitchWriter(s *string) {
 
@@ -40,13 +40,8 @@ func setPitchNum(s string) string {
 				combined = combined + parsed[i]
 				continue
 			}
-			if insideBracket == "+" {
-				var build = []string{word, "⠀"}
-				var pattern = []uint8{0, 1}
-				parsed[i] = buildPitch(build, pattern) + after
-			}
 			if insideBracket == "-" {
-				var build = []string{"⠀", word}
+				var build = []string{EMPTY_SPACE, word}
 				var pattern = []uint8{2, 0}
 				parsed[i] = buildPitch(build, pattern) + after
 			}
@@ -71,106 +66,52 @@ func setPitchNum(s string) string {
 
 func toPitch(s string, pitchNum uint8, moraLength uint8) ([]string, []uint8) {
 	// 0 is low, 1 is overline and 2 is a drop
-	build := make([]string, 0, 4)
-	pattern := make([]uint8, 0, 4)
 	runes := []rune(s)
-	//Heiban and atamadaka
-	if pitchNum == 0 || pitchNum == 1 {
-		var start, end uint8
-		if pitchNum == 0 {
-			start = 0
-			end = 1
-		} else {
-			start = 2
-			end = 0
-		}
+	//Heiban
+	if pitchNum == 0 {
+		return []string{s, EMPTY_SPACE}, []uint8{0, 1}
+	}
+	//Atamadaka
+	if pitchNum == 1 {
 		if moraLength == 1 {
-			pattern = append(pattern, start)
-			build = append(build, s)
-			return build, pattern
+			return []string{s}, []uint8{2}
 		}
-		pattern = append(pattern, start)
-		pattern = append(pattern, end)
+		var pattern = []uint8{2, 0}
 		if isYoon(runes[1]) {
-			build = append(build, string(runes[0:2]))
-			build = append(build, string(runes[2:]))
-			return build, pattern
+			highPart := string(runes[0:2])
+			lowPart := string(runes[2:])
+			return []string{highPart, lowPart}, pattern
 		}
-		build = append(build, string(runes[0]))
-		build = append(build, string(runes[1:]))
-		return build, pattern
+		return []string{string(runes[0]), string(runes[1:])}, pattern
 	}
-	//odaka
+	//Odaka
+	var finalIndex uint8 = uint8(len(runes)) - 1
 	if pitchNum == moraLength {
-		if moraLength == 2 {
-			pattern = append(pattern, 0)
-			pattern = append(pattern, 2)
-			if isYoon(runes[1]) {
-				build = append(build, string(runes[0:2]))
-				build = append(build, string(runes[2:]))
-				return build, pattern
-			}
-			build = append(build, string(runes[0]))
-			build = append(build, string(runes[1:]))
-			return build, pattern
-
+		var pattern = []uint8{0, 2}
+		if isYoon(runes[finalIndex]) {
+			lowPart := string(runes[:finalIndex-1])
+			highPart := string(runes[finalIndex-1:])
+			return []string{lowPart, highPart}, pattern
 		}
-		end1 := uint8(1)
-		start := uint8(len(runes) - 1)
-		pattern = append(pattern, 0)
-		pattern = append(pattern, 1)
-		pattern = append(pattern, 2)
-		if isYoon(runes[1]) {
-			end1 = end1 + 1
-		}
-		if isYoon(runes[len(runes)-1]) {
-			start = start - 1
-		}
-		build = append(build, string(runes[0:end1]))
-		build = append(build, string(runes[end1:start]))
-		build = append(build, string(runes[start:]))
-		return build, pattern
-
+		lowPart := string(runes[:finalIndex])
+		highPart := string(runes[finalIndex])
+		return []string{lowPart, highPart}, pattern
 	}
-	//nakadaka case for words of length 3, they can only have pitch on 2 ifthey are nakadaka or else they fall on another previous pattern
-	if pitchNum == 2 {
-		pattern = append(pattern, 0)
-		pattern = append(pattern, 2)
-		pattern = append(pattern, 0)
-		end1 := uint8(1)
-		if isYoon(runes[1]) {
-			end1++
-			build = append(build, string(runes[0:end1]))
-		} else {
-			build = append(build, string(runes[0]))
-		}
-		if isYoon(runes[end1+1]) {
-			build = append(build, string(runes[end1:end1+2]))
-			build = append(build, string(runes[end1+2:]))
-		} else {
-			build = append(build, string(runes[end1]))
-			build = append(build, string(runes[end1+1:]))
-		}
-
-		return build, pattern
-
+	//Nakadaka
+	realNum := getPitchNum(s, pitchNum)
+	if isYoon(runes[realNum]) {
+		var pattern = []uint8{0, 1, 2, 0}
+		start := string(runes[0 : realNum-1])
+		overline := string(runes[realNum-1])
+		drop := string(runes[realNum])
+		after := string(runes[realNum+1:])
+		return []string{start, overline, drop, after}, pattern
 	}
-	// nakadaka case others
-	pattern = append(pattern, 0)
-	pattern = append(pattern, 1)
-	pattern = append(pattern, 2)
-	pattern = append(pattern, 0)
-	end1 := uint8(1)
-	if isYoon(runes[1]) {
-		end1++
-	}
-	build = append(build, string(runes[0:end1]))
-	realnum := getPitchNum(s, pitchNum)
-	build = append(build, string(runes[end1:realnum]))
-	build = append(build, string(runes[realnum]))
-	build = append(build, string(runes[realnum+1:]))
-
-	return build, pattern
+	var pattern = []uint8{0, 2, 0}
+	start := string(runes[0:realNum])
+	drop := string(runes[realNum])
+	after := string(runes[realNum+1:])
+	return []string{start, drop, after}, pattern
 }
 
 func getPitchNum(s string, pitchNum uint8) uint8 {
