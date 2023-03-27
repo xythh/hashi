@@ -12,7 +12,7 @@ A static site generator that has flexible yet simple file structure, is extensib
 
 ## Installation
 
-Download the binaries provided on github or download it using go get.
+Download the binaries provided on github or download it using go install.
 
 	# go install github.com/xythh/hashi@latest 
 
