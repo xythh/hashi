@@ -1,5 +1,7 @@
 たべないで{{2} stops the file from building, should just output it as that.
 
+[TODO] Get rid of type conversions to uint8
+
 [TODO] Set default css to default css and inline changes for NotOrange.
 
 [TODO] polish up example
@@ -7,6 +9,8 @@
 [TODO] add support for == == for highlighting 
 
 [TODO] implement modal search popup, Shift + F
+
+[TODO] use "object" to keep track of current words when making header anchors.
 
 [TODO] PORT TO [gomarkdown/markdown](https://github.com/gomarkdown/markdown)
 

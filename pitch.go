@@ -5,12 +5,14 @@ import (
 	"strings"
 )
 
-const EMPTY_SPACE = "⠀"
+const EMPTY_SPACE = "　"
 
 func pitchWriter(s *string) {
 
 	var body string = ""
 	if s != nil {
+		//instead just return
+		//	return
 		body = *s
 	}
 	var cutUp []string
@@ -246,6 +248,7 @@ func isNumber(s string) bool {
 		return false
 	}
 	_, err := strconv.Atoi(string(s))
+	// replace with return err
 	if err != nil {
 		return false
 	}
