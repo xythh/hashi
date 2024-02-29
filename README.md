@@ -3,6 +3,8 @@
 
 A static site generator that has flexible yet simple file structure, is extensible and supports Japanese pitch notation.
 
+Based on [zs](https://github.com/zserge/zs)
+
 ## Features
 
 * Easily write pitch accent with simple syntaxx like べんきょう{0} ,no more hard to search and write  ￣  ＼.
